@@ -10,7 +10,7 @@ class Food extends React.Component {
     const { foodList } = this.props;
     let food = foodList.map((food) => {
       return (
-        <List {...food}/>
+        <List key={food.id} {...food}/>
       );
     });
 

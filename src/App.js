@@ -10,6 +10,8 @@ import Afang from './images/Afang-soup-16.jpg';
 import Ewa from './images/Ewa-agoyin.jpg';
 import FriedRice from './images/Fried-rice.jpg';
 
+import { LuxuryCarsForm2, SuperCarsForm2 } from './components/Form2';
+
 class App extends React.Component {
   state = {
     luxuryCars: [
@@ -54,20 +56,36 @@ class App extends React.Component {
     ],
   };
 
-  addLuxuryCars = (incomingData) => {
-    let newId = this.state.luxuryCars.lenght + 1;
-    let newData = {id: newId, ...incomingData};
+  addSuperCars = (incomingData) => {
+    let newId = this.state.superCars.length + 1;
+
+    let newData = { id: newId, ...incomingData };
     this.setState({
-      luxuryCars: [...this.state.luxuryCars, newData],
-    })
+      SuperCars: [...this.state.superCars, newData],
+    });
     console.log(this.state);
+  };
+
+  addAnotherLuxury = (incomingData) => {
+    let newID = this.state.luxuryCars.length + 1;
+    let newCar = { id: newID, ...incomingData };
+    this.setState({
+      luxuryCars: [...this.state.luxuryCars, newCar],
+    });
   };
 
   render() {
     return (
       <div>
-        <Form addLuxuryCars={this.addLuxuryCars} />
-        <Cars title="Cars" luxuryCars={this.state.luxuryCars} superCars={this.state.superCars} />
+        <LuxuryCarsForm2 addAnotherLuxury={this.addAnotherLuxury} /> <br />
+        <br />
+        <SuperCarsForm2 addSuperCars={this.addSuperCars} /> <br />
+        {/* <Form addLuxuryCars={this.addLuxuryCars} /> */}
+        <Cars
+          title="Cars"
+          luxuryCars={this.state.luxuryCars}
+          superCars={this.state.superCars}
+        />
         <Food2 foodList={this.state.food} />
       </div>
     );
