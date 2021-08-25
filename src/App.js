@@ -5,6 +5,7 @@ import axios from 'axios';
 import Home from './components/Home';
 import Login from './components/Login';
 import Post from './components/Post';
+import PostDetails from './components/PostDetails';
 import Navigation from './components/Navigation';
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
         <Route path="/login" component={Login} />
         {/* <Route path="/post" component={Post}/> */}
         <Route
+          exact
           path="/posts"
           render={(routerProps) => (
             <Post
@@ -46,7 +48,7 @@ class App extends Component {
           )}
         />
 
-        
+        <Route path="/posts/:id" component={PostDetails} />
       </div>
     );
   }
