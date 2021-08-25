@@ -1,24 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
 
 import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-function MyComponent() {
-  return (
-    <div>
-      <h1>Hello World this is my first component</h1>
-    </div>
-  );
-}
+// function MyComponent() {
+//   return (
+//     <div>
+      
+//     </div>
+//   );
+// }
 
 
 
 
-ReactDOM.render(<MyComponent />, document.getElementById('myDiv'));
+// ReactDOM.render(<MyComponent />, document.getElementById('myDiv'));
