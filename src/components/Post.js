@@ -1,35 +1,46 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Spinner, Row, Col, Container } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
+import { getPosts } from '../actions/post.action';
+
 export default function Post(props) {
-  console.log(props);
+  const state = useSelector((state) => state.posts)
+  const dispatch = useDispatch()
+  const getAllData = bindActionCreators(getPosts, dispatch)
+
+  console.log(state);
+  useEffect(() => {
+    getAllData()
+  }, [])
   return (
     <Container>
       <h1 className="display-4 text-center">Post</h1>
-
-      {props.isLoading ? (
-        <div className="text-center">
-          <Spinner animation="grow" />
+      
+      {state.isloading ? (
+        <div className='text-center'>
+          <Spinner animation='grow'/>
         </div>
-      ) : (
+      ):(
         <>
           <Row>
-            {props.posts.slice(0, 30).map((Post) => {
-              return (
-                <Col md={3}>
+            {state.posts.slice(0, 30).map((post) => {
+              return(
+                <Col md={3} key={post?.id}>
                   <h4>
-                    <Link to={`/posts/${Post.id}`}>
-                      {Post.title.slice(0, 10)}
+                    <Link>
+                      {post?.title.slice(0, 10)}
                     </Link>
+
                     ...
+
                   </h4>
-                  <p>{Post.body.slice(0, 100)}...</p>
                 </Col>
-              );
+              )
             })}
           </Row>
-          <h1 className="text-center mt-5">Data is Avaliable</h1>
         </>
       )}
     </Container>
